@@ -1,0 +1,32 @@
+@import './base.css';
+
+.color-primary {
+  color: #34495E;
+}
+
+.btn-main {
+  background: #34495E;
+  padding: 0.4rem 1.6rem;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-main:hover {
+  background: #243241;
+}
+.btn-action {
+  background: #40b883;
+  padding: 0.4rem 1.6rem;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+.btn-action:hover {
+  background: #33956b;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
