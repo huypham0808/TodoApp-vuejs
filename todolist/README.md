@@ -1,41 +1,15 @@
-# todolist
+# Todolist-app
 
-This template should help get you started developing with Vue 3 in Vite.
+This project is a Todo web application with primary purpose is practice Vuejs framework.
 
-## Recommended IDE Setup
+## Main feature
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
++ Display a list todos data by call API from a free online REST API https://jsonplaceholder.typicode.com
+. I am using `async-await` in onMounted method.
++ Search data use `commputed` method.
 
-## Customize configuration
++ Continue....
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Tech stack
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Vuejs, Bootstrap 4
