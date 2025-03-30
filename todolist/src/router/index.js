@@ -17,7 +17,7 @@ const router = createRouter({
       component: CreateView,
     },
     {
-      path: '/todo:id',
+      path: '/todo/:id',
       name: 'todoDetail',
       component: DetailView,
     },

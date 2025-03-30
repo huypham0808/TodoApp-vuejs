@@ -1,8 +1,10 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const users = ref([]);
 const txtSearch = ref('');
+const router = useRouter();
 
 onMounted(() => {
   //Su dung asyn await
@@ -10,7 +12,7 @@ onMounted(() => {
     const res = await fetch('https://jsonplaceholder.typicode.com/users');
     const data = await res.json();
     users.value = data;
-  })() //Dau () dau tien la function, dau () thu 2 se thuc thi function => day la cach khai bao nhanh
+  })(); //Dau () dau tien la function, dau () thu 2 se thuc thi function => day la cach khai bao nhanh
 
   // fetch('https://jsonplaceholder.typicode.com/users')
   //     .then(response => response.json())
@@ -18,17 +20,21 @@ onMounted(() => {
 });
 
 const filterUser = computed(() => {
-  return users.value.filter(item => item.name.toUpperCase().indexOf(txtSearch.value.toUpperCase()) !== -1)
+  return users.value.filter(item => item.name.toUpperCase().indexOf(txtSearch.value.toUpperCase()) !== -1 || item.email.toUpperCase().indexOf(txtSearch.value.toUpperCase()) !== -1)
 });
 </script>
 
 <template>
   <main class="container" style="padding-top: 2rem;">
     <input type="text" placeholder="Enter Search Here" v-model="txtSearch"/>
-    <div class="card-item" v-for="user in filterUser">
-      <h4 class="card-title">{{user.name}}</h4>
-      <i>{{user.email}}</i>
-    </div>
+    <div class="row justify-content-center " >
+        <div class="col-md-4 card card-item w-25 m-3" v-for="user in filterUser">
+          <div class="card-body" @click="router.push({path:`/todo/${user?.id}`})">
+            <h4 class="card-title">{{user?.name}}</h4>
+            <i>{{user?.email}}</i>
+          </div>
+        </div>    
+    </div> 
   </main>
 </template>
 
@@ -42,13 +48,8 @@ input {
   background: #ededed;
 }
 .card-item {
-  display: flex;
-  flex-direction: column;
   background: #324558;
-  width: 50%;
-  border-radius: 10px;
   color: #fff;
-  padding: .8rem 1rem;
   margin-top: 1.6rem ;
   cursor: pointer;
 }

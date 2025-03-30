@@ -5,7 +5,10 @@ import { RouterLink } from 'vue-router';
 <template>
     <div class="container">
         <header>
-        <img class="logo" width="60" height="60" src="@/assets/logo.svg" alt="Vue logo">
+        <div class="myLogo d-flex align-items-center text-success">
+            <img class="logo" width="60" height="60" src="@/assets/logo.svg" alt="Vue logo">
+            <nav class="h2">Huy Pham</nav>
+        </div>
         <nav>
             <RouterLink to="/">
                 <div class="btn-main">Home</div>
@@ -31,19 +34,8 @@ import { RouterLink } from 'vue-router';
     padding: 20px; 
     box-sizing: border-box;
 }*/
-header {
-    display: flex;
-    justify-content: space-between;
-    padding: .4rem 2rem;
-    align-items: center;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
-    border-left: transparent;
-}
-nav {
-    display: flex;
-
-}
 a {
   text-decoration: none;
+  color: #fff;
 }
 </style>
