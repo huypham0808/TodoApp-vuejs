@@ -8,15 +8,21 @@ const router = useRouter();
 
 onMounted(() => {
   //Su dung asyn await
-  (async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users');
-    const data = await res.json();
-    users.value = data;
-  })(); //Dau () dau tien la function, dau () thu 2 se thuc thi function => day la cach khai bao nhanh
+  // (async () => {
+  //   const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  //   const data = await res.json();
+  //   users.value = data;
+  // })(); //Dau () dau tien la function, dau () thu 2 se thuc thi function => day la cach khai bao nhanh
 
-  // fetch('https://jsonplaceholder.typicode.com/users')
-  //     .then(response => response.json())
-  //     .then(json => users.value = json)
+  fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(json => users.value = json);
+  const storedData = JSON.parse(localStorage.getItem('data')) || [];
+  // Add id to each user if it doesn't exist
+  users.value = storedData.map((user, index) => ({
+    ...user,
+    id: user.id || index, // Use existing id or generate one
+  }));
 });
 
 const filterUser = computed(() => {
@@ -31,7 +37,9 @@ const filterUser = computed(() => {
         <div class="col-md-4 card card-item w-25 m-3" v-for="user in filterUser">
           <div class="card-body" @click="router.push({path:`/todo/${user?.id}`})">
             <h4 class="card-title">{{user?.name}}</h4>
-            <i>{{user?.email}}</i>
+            <p>{{user?.email}}</p>
+            <p>{{user?.phone}}</p>
+            <p>{{user?.website}}</p>
           </div>
         </div>    
     </div> 

@@ -1,5 +1,6 @@
 <script setup>
 import { reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const todoData = reactive({
     name: '',
@@ -7,9 +8,13 @@ const todoData = reactive({
     phone: '',
     website: ''
 })
-
+const router = useRouter();
 const handleCreateNewData = async() => {
-    console.log(todoData)
+    let data = JSON.parse(localStorage.getItem("data")) || [];
+    data.push(Object.assign({}, todoData));
+    console.log(todoData);
+    localStorage.setItem("data", JSON.stringify(data));
+    router.push("/");
 }
 </script>
 
@@ -21,7 +26,7 @@ const handleCreateNewData = async() => {
     <input class="input-data"type="text" placeholder="Enter Phone Here" v-model="todoData.phone"/>
     <input class="input-data"type="text" placeholder="Enter Website Here" v-model="todoData.website"/>
     <div class="d-flex justify-content-center" @click="handleCreateNewData">
-        <button class="btn btn-success mt-3 d-flex btn-create">Create</button>
+        <button type="submit" class="btn btn-success mt-3 d-flex btn-create">Create</button>
     </div>
   </main>
 </template>
